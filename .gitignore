@@ -1,0 +1,9 @@
+# renamer state (per-folder ledgers live alongside the images, not in the repo)
+.rename_ledger.jsonl
+
+# python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
