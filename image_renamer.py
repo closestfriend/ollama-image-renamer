@@ -56,7 +56,10 @@ def caption(path, model, timeout=180):
 
 
 def unique_name(directory, slug, stem, ext, current):
-    base = f"{slug}{MARKER}{slugify(stem, 40)}"
+    # Preserve the full original stem (lossless) — Midjourney/SD exports often embed the
+    # generation prompt, which is more valuable than any caption. Generous cap keeps the
+    # result under the 255-char filename limit even with the caption slug prepended.
+    base = f"{slug}{MARKER}{slugify(stem, 150)}"
     name = f"{base}{ext}"
     n = 2
     while os.path.exists(os.path.join(directory, name)) and name != current:
